@@ -1,4 +1,4 @@
-const data = {
+const starterData = {
   lists: [
     {
       id: "1",
@@ -21,7 +21,7 @@ const data = {
       title: "Completados",
       cards: [
         {
-          id: "1",
+          id: "3",
           title: "Practicar React",
           description: "Practicar React emulando trello",
           label: "5 mins",
@@ -32,4 +32,4 @@ const data = {
   ],
 };
 
-export default data;
+export default starterData;
