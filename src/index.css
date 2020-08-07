@@ -24,22 +24,37 @@ body {
   display: flex;
   justify-content: start;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .List {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   margin-right: 1rem;
   margin-top: 1rem;
   background-color: #c4c9cc;
   display: flex;
   flex-direction: column;
   width: 25rem;
+  border-radius: 3px;
 }
 
 .list-title {
   font-size: 1.5rem;
   color: rgb(58, 57, 57);
   font-weight: bold;
+}
+
+.regular-button {
+  font-size: 1.2rem;
+  border: none;
+  background-color: inherit;
+  align-self: flex-start;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.add-card-button:hover {
+  cursor: pointer;
 }
 
 .card {
@@ -50,6 +65,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 3px;
 }
 
 .card-title {
@@ -59,4 +75,16 @@ body {
 
 .card-description {
   font-size: 1.1rem;
+}
+
+.AddCardForm > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-card-description,
+.new-card-title {
+  margin-top: 1rem;
+  border: 1px solid white;
+  border-radius: 3px;
 }

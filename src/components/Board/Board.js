@@ -9,12 +9,21 @@ export default function Board() {
     setData(data);
   };
 
+  const handleAddCardForm = ({ title, description }) => {
+    console.log({ title, description });
+  };
+
   return (
     <>
       <h1 className="board-title">Tablero: Cosas por hacer</h1>
       <div className="Board">
         {data.lists.map((list) => (
-          <List key={list.id} title={list.title} cards={list.cards} />
+          <List
+            key={list.id}
+            title={list.title}
+            cards={list.cards}
+            handleAddCardForm={handleAddCardForm}
+          />
         ))}
       </div>
     </>
