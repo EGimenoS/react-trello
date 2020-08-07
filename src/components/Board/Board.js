@@ -5,14 +5,13 @@ import { getNewCardId } from "../../utils/utils";
 export default function Board() {
   const [data, setData] = useState(starterData);
 
-  const updateData = (newData) => {
-    setData(data);
-  };
-
   const handleAddCardForm = ({ title, description, listId }) => {
-    console.log({ title, description, listId });
-    const newId = getNewCardId(data, listId);
-    console.log(newId);
+    if (title) {
+      const newId = getNewCardId(data, listId);
+      const newCard = { id: newId, title, description }; // nueva tarjeta a añadir
+      data.lists.find((list) => list.id === listId).cards.push(newCard);
+      setData(data);
+    }
   };
 
   return (

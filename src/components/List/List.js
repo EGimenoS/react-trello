@@ -9,7 +9,7 @@ export default function List({ id, title, cards, handleAddCardForm }) {
     setShowAddForm(!showAddForm);
   };
 
-  const addForm = () => {
+  const renderAddForm = () => {
     if (showAddForm) {
       return (
         <AddCardForm
@@ -37,7 +37,7 @@ export default function List({ id, title, cards, handleAddCardForm }) {
       {cards.map((card) => (
         <Card key={card.id} card={card} listId={id} />
       ))}
-      {addForm()}
+      {renderAddForm()}
       {showAddButton()}
     </div>
   );

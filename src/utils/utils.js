@@ -3,7 +3,6 @@ const getNewCardId = (data, listId) => {
   const cardIds = data.lists
     .find((list) => list.id === listId)
     .cards.map((card) => card.id);
-  console.log(cardIds);
   return Math.max(...cardIds) + 1;
 };
 
