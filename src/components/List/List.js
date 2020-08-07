@@ -11,7 +11,13 @@ export default function List({ id, title, cards, handleAddCardForm }) {
 
   const addForm = () => {
     if (showAddForm) {
-      return <AddCardForm handleAddCardForm={handleAddCardForm} />;
+      return (
+        <AddCardForm
+          handleAddCardForm={handleAddCardForm}
+          toggleShowAddForm={toggleShowAddForm}
+          listId={id}
+        />
+      );
     }
   };
 
@@ -29,7 +35,7 @@ export default function List({ id, title, cards, handleAddCardForm }) {
     <div className="List">
       <p className="list-title">{title}</p>
       {cards.map((card) => (
-        <Card key={card.id} card={card} />
+        <Card key={card.id} card={card} listId={id} />
       ))}
       {addForm()}
       {showAddButton()}

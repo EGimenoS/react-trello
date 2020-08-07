@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import starterData from "../../starter_data";
 import List from "../List/List";
-
+import { getNewCardId } from "../../utils/utils";
 export default function Board() {
   const [data, setData] = useState(starterData);
 
@@ -9,8 +9,10 @@ export default function Board() {
     setData(data);
   };
 
-  const handleAddCardForm = ({ title, description }) => {
-    console.log({ title, description });
+  const handleAddCardForm = ({ title, description, listId }) => {
+    console.log({ title, description, listId });
+    const newId = getNewCardId(data, listId);
+    console.log(newId);
   };
 
   return (
@@ -20,6 +22,7 @@ export default function Board() {
         {data.lists.map((list) => (
           <List
             key={list.id}
+            id={list.id}
             title={list.title}
             cards={list.cards}
             handleAddCardForm={handleAddCardForm}

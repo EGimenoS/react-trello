@@ -21,7 +21,7 @@ const starterData = {
       title: "Completados",
       cards: [
         {
-          id: "3",
+          id: "1",
           title: "Practicar React",
           description: "Practicar React emulando trello",
           label: "5 mins",
