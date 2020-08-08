@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import starterData from "../../starter_data";
+import starterLists from "../../starter_data";
 import List from "../List/List";
 import { getNewCardId } from "../../utils/utils";
 export default function Board() {
-  const [lists, setLists] = useState(starterData.lists);
+  const [lists, setLists] = useState(starterLists);
+
+  const buildDataToUpdate = ({ title, description, listId }) => {
+    const newId = getNewCardId(lists, listId);
+    const newCard = { id: newId, title, description };
+    const updatedCards = [...lists[listId]?.cards, newCard];
+
+    const updatedLists = {
+      ...lists,
+      [listId]: { ...lists[listId], cards: updatedCards },
+    };
+    return updatedLists;
+  };
 
   const handleAddCardForm = ({ title, description, listId }) => {
     if (title) {
-      const newId = getNewCardId(lists, listId);
-      const newCard = { id: newId, title, description }; // construyo nueva tarjeta a añadir
-      const listToUpdate = lists.find((list) => list.id === listId); // extraigo lista que quiero utilizar
-      const { cards, ...updatedList } = listToUpdate;
-      const newCardsArray = cards.concat(newCard); // construyo nuevo array de cards actualizado
-      updatedList.cards = newCardsArray; // construyo lista actualizada.
-      const newData = lists
-        .filter((list) => list.id !== listId)
-        .concat(updatedList);
-      console.log(JSON.stringify(newData, null, 2));
-      setLists(newData.sort((a, b) => a.id - b.id)); // reordeno las listas por id y actualizo el estado
-
-      // lists.find((list) => list.id === listId).cards.push(newCard);
-      // setLists(lists);
+      const newLists = buildDataToUpdate(arguments);
+      setLists(newLists);
     }
   };
 
@@ -28,12 +28,12 @@ export default function Board() {
     <>
       <h1 className="board-title">Tablero: Cosas por hacer</h1>
       <div className="Board">
-        {lists.map((list) => (
+        {Object.keys(lists).map((listId) => (
           <List
-            key={list.id}
-            id={list.id}
-            title={list.title}
-            cards={list.cards}
+            key={listId}
+            id={listId}
+            title={lists[listId].title}
+            cards={lists[listId].cards}
             handleAddCardForm={handleAddCardForm}
           />
         ))}
