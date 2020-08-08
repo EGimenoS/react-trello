@@ -20,10 +20,10 @@ Trello clone to practice React.
 
 ✅ Replicated basic Trello styles and layout by using Flex.  
 ✅ The board gets rendered with the lists and cards from the starter data.  
-✅ New cards can be added to a list.
+✅ New cards can be added to a list.  
 ❌ Can delete cards from a list.  
-❌ Can edit cards.
-❌ Can add lists.
+❌ Can edit cards.  
+❌ Can add lists.  
 ❌ Drag and drop reordering of cards in a list.  
 ❌ Drag and Drop reordering of lists.  
 ❌ Refactor to use Redux or Context.

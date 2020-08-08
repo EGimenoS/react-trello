@@ -88,3 +88,17 @@ body {
   border: 1px solid white;
   border-radius: 3px;
 }
+
+.new-list {
+  margin-top: 1rem;
+}
+.new-list-input {
+  border: 1px solid white;
+  border-radius: 3px;
+  margin-left: 1rem;
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+.new-list-input:focus {
+  border: lightblue 1px solid;
+}

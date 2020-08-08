@@ -1,4 +1,4 @@
-const starterlists = {
+const starterLists = {
   1: {
     title: "Tareas por hacer",
     cards: [
@@ -26,4 +26,4 @@ const starterlists = {
   },
 };
 
-export default starterlists;
+export default starterLists;

@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import starterLists from "../../starter_data";
 import List from "../List/List";
-import { getNewCardId } from "../../utils/utils";
+import { buildDataAfterAddCard } from "../../utils/utils";
 export default function Board() {
   const [lists, setLists] = useState(starterLists);
-
-  const buildDataToUpdate = ({ title, description, listId }) => {
-    const newId = getNewCardId(lists, listId);
-    const newCard = { id: newId, title, description };
-    const updatedCards = [...lists[listId]?.cards, newCard];
-
-    const updatedLists = {
-      ...lists,
-      [listId]: { ...lists[listId], cards: updatedCards },
-    };
-    return updatedLists;
-  };
+  const [newListName, setNewListName] = useState("");
 
   const handleAddCardForm = ({ title, description, listId }) => {
     if (title) {
-      const newLists = buildDataToUpdate(arguments);
+      const newLists = buildDataAfterAddCard(title, description, listId, lists);
       setLists(newLists);
+    }
+  };
+
+  const handleAddNewList = (event) => {
+    if (event.keyCode === 13 && newListName) {
+      const newListId = Math.max(...Object.keys(lists)) + 1;
+      setLists({ ...lists, [newListId]: { title: newListName, cards: [] } });
+      setNewListName("");
     }
   };
 
@@ -28,15 +25,24 @@ export default function Board() {
     <>
       <h1 className="board-title">Tablero: Cosas por hacer</h1>
       <div className="Board">
-        {Object.keys(lists).map((listId) => (
+        {Object.entries(lists).map(([listId, { title, cards }]) => (
           <List
             key={listId}
             id={listId}
-            title={lists[listId].title}
-            cards={lists[listId].cards}
+            title={title}
+            cards={cards}
             handleAddCardForm={handleAddCardForm}
           />
         ))}
+        <div className="new-list">
+          Nueva Lista
+          <input
+            className="new-list-input"
+            type="text"
+            onKeyDown={handleAddNewList}
+            onChange={(event) => setNewListName(event.target.value)}
+          />
+        </div>
       </div>
     </>
   );
