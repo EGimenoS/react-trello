@@ -24,8 +24,6 @@ const starterData = {
           id: 1,
           title: "Practicar React",
           description: "Practicar React emulando trello",
-          label: "5 mins",
-          metadata: { sha: "be312a1" },
         },
       ],
     },

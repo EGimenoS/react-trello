@@ -22,7 +22,7 @@ body {
 
 .Board {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-wrap: wrap;
   align-items: flex-start;
 }

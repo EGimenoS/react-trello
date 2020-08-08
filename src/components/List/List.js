@@ -25,6 +25,9 @@ export default function List({ id, title, cards, handleAddCardForm }) {
     if (!showAddForm) {
       return (
         <button onClick={toggleShowAddForm} className="regular-button">
+          <span role="img" aria-label="Snowman">
+            ➕
+          </span>
           Añadir tarjeta
         </button>
       );
