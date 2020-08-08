@@ -9,7 +9,6 @@ export default function Board() {
   const handleAddCardForm = ({ title, description, listId }) => {
     if (title) {
       const newLists = buildDataAfterAddCard(title, description, listId, lists);
-      setLists(newLists);
     }
   };
 
