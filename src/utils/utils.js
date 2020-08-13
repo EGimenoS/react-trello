@@ -16,4 +16,13 @@ const buildDataAfterAddCard = (title, description, listId, lists) => {
   return updatedLists;
 };
 
-export { getNewCardId, buildDataAfterAddCard };
+const buildDataAfterDeleteCard = (listId, cardId, lists) => {
+  const updatedCards = lists[listId].cards.filter((card) => card.id !== cardId);
+  const updatedLists = {
+    ...lists,
+    [listId]: { ...lists[listId], cards: updatedCards },
+  };
+  return updatedLists;
+};
+
+export { getNewCardId, buildDataAfterAddCard, buildDataAfterDeleteCard };

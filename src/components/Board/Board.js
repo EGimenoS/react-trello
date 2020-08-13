@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import starterLists from "../../starter_data";
 import List from "../List/List";
-import { buildDataAfterAddCard } from "../../utils/utils";
+import {
+  buildDataAfterAddCard,
+  buildDataAfterDeleteCard,
+} from "../../utils/utils";
 export default function Board() {
   const [lists, setLists] = useState(starterLists);
   const [newListName, setNewListName] = useState("");
 
   const handleAddCardForm = ({ title, description, listId }) => {
     if (title) {
-      const newLists = buildDataAfterAddCard(title, description, listId, lists);
-      setLists(newLists);
+      const updatedLists = buildDataAfterAddCard(
+        title,
+        description,
+        listId,
+        lists
+      );
+      setLists(updatedLists);
     }
   };
 
@@ -26,6 +34,10 @@ export default function Board() {
     setLists(updatedLists);
   };
 
+  const handleDeleteCard = (listId, cardId) => {
+    const updatedLists = buildDataAfterDeleteCard(listId, cardId, lists);
+    setLists(updatedLists);
+  };
   return (
     <>
       <h1 className="board-title">Tablero: Cosas por hacer</h1>
@@ -38,6 +50,7 @@ export default function Board() {
             cards={cards}
             handleAddCardForm={handleAddCardForm}
             handleDeleteList={handleDeleteList}
+            handleDeleteCard={handleDeleteCard}
           />
         ))}
         <div className="new-list">

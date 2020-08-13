@@ -12,6 +12,7 @@ export default function List({
   cards,
   handleAddCardForm,
   handleDeleteList,
+  handleDeleteCard,
 }) {
   const [showAddForm, setShowAddForm] = useState(false);
 
@@ -70,7 +71,12 @@ export default function List({
       </div>
 
       {cards.map((card) => (
-        <Card key={card.id} card={card} listId={id} />
+        <Card
+          key={card.id}
+          card={card}
+          listId={id}
+          handleDeleteCard={handleDeleteCard}
+        />
       ))}
       {renderAddForm()}
       {showAddButton()}
