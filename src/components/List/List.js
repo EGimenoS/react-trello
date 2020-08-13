@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import Card from "../Card/Card";
 import AddCardForm from "../AddCardForm/AddCardForm";
 
+import { AiFillDelete } from "react-icons/ai";
+import { MdAddBox } from "react-icons/md";
+import { IconContext } from "react-icons";
+
 export default function List({ id, title, cards, handleAddCardForm }) {
   const [showAddForm, setShowAddForm] = useState(false);
 
@@ -24,19 +28,35 @@ export default function List({ id, title, cards, handleAddCardForm }) {
   const showAddButton = () => {
     if (!showAddForm) {
       return (
-        <button onClick={toggleShowAddForm} className="regular-button">
-          <span role="img" aria-label="Snowman">
-            ➕
-          </span>
-          Añadir tarjeta
-        </button>
+        <div className="list-footer">
+          <button onClick={toggleShowAddForm} className="regular-button">
+            <IconContext.Provider
+              value={{
+                color: "color: rgb(58, 57, 57)",
+                size: "2rem",
+                className: "add-icon",
+              }}
+            >
+              <MdAddBox />
+            </IconContext.Provider>
+          </button>
+          <span>Añadir tarjeta</span>
+        </div>
       );
     }
   };
 
   return (
     <div className="List">
-      <p className="list-title">{title}</p>
+      <div className="list-header">
+        <div className="list-title">{title}</div>
+        <IconContext.Provider
+          value={{ color: "color: rgb(58, 57, 57)", size: "3rem" }}
+        >
+          <AiFillDelete />
+        </IconContext.Provider>
+      </div>
+
       {cards.map((card) => (
         <Card key={card.id} card={card} listId={id} />
       ))}
