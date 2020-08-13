@@ -6,7 +6,13 @@ import { AiFillDelete } from "react-icons/ai";
 import { MdAddBox } from "react-icons/md";
 import { IconContext } from "react-icons";
 
-export default function List({ id, title, cards, handleAddCardForm }) {
+export default function List({
+  id,
+  title,
+  cards,
+  handleAddCardForm,
+  handleDeleteList,
+}) {
   const [showAddForm, setShowAddForm] = useState(false);
 
   const toggleShowAddForm = () => {
@@ -46,6 +52,10 @@ export default function List({ id, title, cards, handleAddCardForm }) {
     }
   };
 
+  const deleteList = () => {
+    handleDeleteList(id);
+  };
+
   return (
     <div className="List">
       <div className="list-header">
@@ -53,7 +63,9 @@ export default function List({ id, title, cards, handleAddCardForm }) {
         <IconContext.Provider
           value={{ color: "color: rgb(58, 57, 57)", size: "3rem" }}
         >
-          <AiFillDelete />
+          <button className="regular-button" onClick={deleteList}>
+            <AiFillDelete />
+          </button>
         </IconContext.Provider>
       </div>
 

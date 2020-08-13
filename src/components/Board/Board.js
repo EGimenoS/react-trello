@@ -21,6 +21,11 @@ export default function Board() {
     }
   };
 
+  const handleDeleteList = (listId) => {
+    const { [listId]: _, ...updatedLists } = lists;
+    setLists(updatedLists);
+  };
+
   return (
     <>
       <h1 className="board-title">Tablero: Cosas por hacer</h1>
@@ -32,6 +37,7 @@ export default function Board() {
             title={title}
             cards={cards}
             handleAddCardForm={handleAddCardForm}
+            handleDeleteList={handleDeleteList}
           />
         ))}
         <div className="new-list">

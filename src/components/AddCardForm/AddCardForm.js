@@ -30,7 +30,7 @@ export default function AddCardForm({
           className="new-card-description"
           onChange={(event) => setDescription(event.target.value)}
           name="description"
-          rows="20"
+          rows="10"
         ></textarea>
         <button className="regular-button" type="submit">
           Añadir

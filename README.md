@@ -24,6 +24,7 @@ Trello clone to practice React.
 ❌ Can delete cards from a list.  
 ❌ Can edit cards.  
 ✅ Can add lists.  
+✅ Can delete lists.  
 ❌ Drag and drop reordering of cards in a list.  
 ❌ Drag and Drop reordering of lists.  
 ❌ Refactor to use Redux or Context.
