@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Card from "../Card/Card";
 import AddCardForm from "../AddCardForm/AddCardForm";
 
@@ -15,6 +15,7 @@ export default function List({
   handleDeleteCard,
 }) {
   const [showAddForm, setShowAddForm] = useState(false);
+  const refList = useRef(null);
 
   const toggleShowAddForm = () => {
     setShowAddForm(!showAddForm);
@@ -57,8 +58,35 @@ export default function List({
     handleDeleteList(id);
   };
 
+  const handleCardDrop = (e) => {
+    console.log("ondrop");
+    refList.current.style.opacity = "1";
+    const data = JSON.parse(e.dataTransfer.getData("text/plain"));
+    console.log(data);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    refList.current.style.opacity = "0.4";
+    console.log("ondragover");
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    refList.current.style.opacity = "1";
+    console.log("ondragleave");
+  };
+
   return (
-    <div className="List">
+    <div
+      ref={refList}
+      onDragOver={(e) => handleDragOver(e)}
+      onDragLeave={(e) => handleDragLeave(e)}
+      onDrop={(e) => handleCardDrop(e)}
+      className="List"
+    >
       <div className="list-header">
         <div className="list-title">{title}</div>
         <IconContext.Provider

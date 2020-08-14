@@ -6,8 +6,32 @@ export default function Card({ listId, card, handleDeleteCard }) {
   const deleteCard = () => {
     handleDeleteCard(listId, card.id);
   };
+
+  const handleDragStart = (e) => {
+    console.log("ondrag");
+    const dragData = {
+      listId,
+      cardId: card.id,
+      title: card.title,
+      description: card.description,
+    };
+    e.currentTarget.classList.add("dragged-element");
+    e.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+    e.stopPropagation();
+  };
+
+  const handleDragEnd = (e) => {
+    console.log("ondragend");
+    e.currentTarget.classList.remove("dragged-element");
+    e.stopPropagation();
+  };
   return (
-    <div className="card">
+    <div
+      draggable="true"
+      onDragStart={(e) => handleDragStart(e)}
+      onDragEnd={(e) => handleDragEnd(e)}
+      className="card"
+    >
       <div className="card-header">
         <div className="card-title">{card.title}</div>
         <button className="regular-button" onClick={deleteCard}>
