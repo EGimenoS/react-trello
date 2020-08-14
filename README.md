@@ -3,14 +3,14 @@
 ### Table of contents
 
 - [Introduction](#Introduction)
-- [Setup](#Instalación)
+- [Setup](#Setup)
 - [Todo](#Todo)
 
 #### Introduction
 
 Trello clone to practice React.
 
-### Instalación
+### Setup
 
 1. Clone the repo `git clone https://github.com/EGimenoS/react-trello.git`
 2. Install dependencies by using `npm install`
@@ -25,6 +25,6 @@ Trello clone to practice React.
 ❌ Can edit cards.  
 ✅ Can add new lists.  
 ✅ Can delete a list.  
-❌ Drag and drop reordering of cards in a list.  
-❌ Drag and Drop reordering of lists.  
+✅ Drag and Drop to change cards from one list to another.  
+❌ Drag and Drop reordering cards inside of lists.  
 ❌ Refactor to use Redux or Context.

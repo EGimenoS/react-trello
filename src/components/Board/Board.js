@@ -21,6 +21,32 @@ export default function Board() {
     }
   };
 
+  const handleUpdateDataAfterDrop = (
+    prevListId,
+    prevCardId,
+    title,
+    description,
+    newListId
+  ) => {
+    const listsAfterDeleteCard = buildDataAfterDeleteCard(
+      prevListId,
+      prevCardId,
+      lists
+    );
+    const updatedLists = buildDataAfterAddCard(
+      title,
+      description,
+      newListId,
+      listsAfterDeleteCard
+    );
+    setLists(updatedLists);
+  };
+
+  const handleDeleteCard = (listId, cardId) => {
+    const updatedLists = buildDataAfterDeleteCard(listId, cardId, lists);
+    setLists(updatedLists);
+  };
+
   const handleAddNewList = (event) => {
     if (event.keyCode === 13 && newListName) {
       const newListId = Math.max(...Object.keys(lists)) + 1;
@@ -34,10 +60,6 @@ export default function Board() {
     setLists(updatedLists);
   };
 
-  const handleDeleteCard = (listId, cardId) => {
-    const updatedLists = buildDataAfterDeleteCard(listId, cardId, lists);
-    setLists(updatedLists);
-  };
   return (
     <>
       <h1 className="board-title">Tablero: Cosas por hacer</h1>
@@ -51,6 +73,7 @@ export default function Board() {
             handleAddCardForm={handleAddCardForm}
             handleDeleteList={handleDeleteList}
             handleDeleteCard={handleDeleteCard}
+            handleUpdateDataAfterDrop={handleUpdateDataAfterDrop}
           />
         ))}
         <div className="new-list">

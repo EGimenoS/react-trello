@@ -8,7 +8,6 @@ export default function Card({ listId, card, handleDeleteCard }) {
   };
 
   const handleDragStart = (e) => {
-    console.log("ondrag");
     const dragData = {
       listId,
       cardId: card.id,
@@ -21,7 +20,6 @@ export default function Card({ listId, card, handleDeleteCard }) {
   };
 
   const handleDragEnd = (e) => {
-    console.log("ondragend");
     e.currentTarget.classList.remove("dragged-element");
     e.stopPropagation();
   };

@@ -13,6 +13,7 @@ export default function List({
   handleAddCardForm,
   handleDeleteList,
   handleDeleteCard,
+  handleUpdateDataAfterDrop,
 }) {
   const [showAddForm, setShowAddForm] = useState(false);
   const refList = useRef(null);
@@ -59,24 +60,27 @@ export default function List({
   };
 
   const handleCardDrop = (e) => {
-    console.log("ondrop");
     refList.current.style.opacity = "1";
     const data = JSON.parse(e.dataTransfer.getData("text/plain"));
-    console.log(data);
+    handleUpdateDataAfterDrop(
+      data.listId,
+      data.cardId,
+      data.title,
+      data.description,
+      id
+    );
   };
 
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
     refList.current.style.opacity = "0.4";
-    console.log("ondragover");
   };
 
   const handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
     refList.current.style.opacity = "1";
-    console.log("ondragleave");
   };
 
   return (
